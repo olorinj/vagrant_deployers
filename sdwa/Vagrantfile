@@ -1,0 +1,22 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "generic/alpine313"
+  config.vm.box_check_update = false
+  config.vm.network "forwarded_port", guest: 5000, host: 5000
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo apk update
+    sudo apk add git python3 py3-pip gcc python3-dev libevent-dev musl-dev linux-headers g++ 
+    sudo ln -s /usr/bin/python3 /usr/bin/python
+    git clone https://github.com/StackZeroSec/sdwa.git
+    cd sdwa
+    pip install -r requirements.txt
+    rm db/vuln_db.sqlite
+    python db/setup_db.py
+    export PATH=/home/vagrant/.local/bin:$PATH
+    sudo -- sh -c -e "echo 'export PATH=/home/vagrant/.local/bin:$PATH' >> /etc/profile"
+    source /etc/profile
+    flask run --host=0.0.0.0
+  SHELL
+end
