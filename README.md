@@ -17,21 +17,34 @@ The boxes used for these files are from the Bento or Global repositories.
 1. Clone the repository.
 2. Open a terminal window. (Any shell from Windows, Linux or MacOS)
 3. From the shell go to the folder with the file to be deployed.
-4. Execute: vagrant up
+4. Execute: <br>
+   ```bash
+   vagrant up
+   ```
    If the box isn't in the computer it would be downloaded after deploy.
-   The box will be deployed and configured.
-   Depending on the Vagrantfile configuration it would be a service ready to use lie a deamon or a service started ready to use. This will be explained in the READ-me file.
+   The box will be deployed and configured properly.<br>
+   Depending on the Vagrantfile configuration it would be a service ready to use like a running deamon or a service started ready to use. This will be explained in the README.md file.
    
 ## How to stop a Vagrantfile
 1. Open a terminal window. (Any shell from Windows, Linux or MacOS)
 2. From the shell go to the folder with the file to be deployed.
-3. Execute: vagrant halt
+3. Execute: <br>
+   ```bash
+   vagrant halt
+   ```
 
 ## How to remove a deployed image
 1. Open a terminal window. (Any shell from Windows, Linux or MacOS)
 2. From the shell go to the folder with the file to be deployed.
-3. Execute: vagrant destroy -f
+3. Execute:<br>
+   ```bash
+   vagrant destroy -f
+   ```
 
 # Available files
 ## Cybersecurity learning
-* SDWA (Sitting Duck Vulnerable App). Once deployed it would be ready to access using a browser at http://localhost:5000. If this port is in use it must be changed in the Vagrantfile, line 7: "host: 5000"
+* SDWA (Sitting Duck Vulnerable App).<br>
+  Once deployed the service would be ready to access using a browser at http://localhost:5000<br>
+  If this port is use at your host then change the value of the variable **HOST_PORT** in the file Vagrantfile. <br>
+  To finish the service and shutdown the Virtual Machine type: http://localhost:5000/shutdown
+
