@@ -1,0 +1,1 @@
+Este directorio se sincroniza automáticamente con la máquina virtual.
