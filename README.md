@@ -70,7 +70,11 @@ En todas las imágenes se configura el editor nano con ko necesario para desarro
 * VHDL<br>
   **Sistema operativo**: Debian 11
   **Puerto SSH**: 2222
-  Entorno libre de desarrollo VHDL con instrucciones detalladas en el fichero README.md del directorio proj.
+  Entorno libre de desarrollo VHDL con instrucciones detalladas en el fichero README.md del directorio proj.<br>
+* JavaDEV<br>
+  **Sistema operativo**: Debian 11
+  **Puerto SSH**: 2222
+  Entorno libre de desarrollo Eclipse con instrucciones detalladas en el fichero README.md de su directorio.<br>
 
 ## Integración con VSCode
 Es posible trabajar con [Visual Studio Code](https://code.visualstudio.com/download) y cualquiera de estas máquinas utilizando la extensión [Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack).
