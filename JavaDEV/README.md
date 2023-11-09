@@ -18,6 +18,16 @@ Las claves de la máquina desplegada son:
 * Usuario: vagrant
 * Contraseña: vagrant
 
+# Abrir eclipse
+Aun que la máquina virtual tiene un entorno gráfico no es necesario entrar en el entorno de ventanas para usarlo.
+Una vez arrancado el vagrant (con vagrant up) sólo hay que teclear (Windows/Linux/Mac):
+```bash
+ssh -X -p 2222 vagrant@localhost
+# Entras en el sistema operativo de la máquina
+$ eclipse
+```
+Y así se abre en tu ordenador y lo puedes utilizar como si estuvieras en tu propia máquina sin mancharla. Recuerda que en el home de esta máquina virtual está el directorio "projects" que está enlazado con el "dat" de tu propio equipo.Así no hay que preocuparse de mover ficheros entre máquinas.
+
 # Detalles
 * Se crea un grupo de máquinas virtuales llamado UNED donde se genera esta máquina virtual
 * Se crea una máquina virtual con dos tarjetas de red, la habitual de acceso NAT al equipo local y otra de una red denominada "uned" para que se pueda interactuar con otros servidores de esta red. Por ejemplo, un servidor MariaDB.
