@@ -1,0 +1,38 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+VM_NAME = "Prolog"
+SSH_PORT = 2226
+BOX_NAME = "bento/debian-11"
+Vagrant.require_version ">= 2.3.5"
+FileUtils.mkdir_p "./dat"
+ENV["LC_ALL"] = "es_ES.UTF-8"
+
+Vagrant.configure("2") do |c|
+	c.vagrant.plugins = "vagrant-vbguest"
+	c.vm.box = BOX_NAME
+	c.vm.box_check_update = false
+	c.vm.provider :virtualbox
+	c.vm.network :forwarded_port, guest: 22  , host: SSH_PORT, id: "ssh"  , auto_correct: true
+	c.vm.network "private_network", ip: "10.20.30.26", virtualbox__intnet: "uned"
+	c.vm.define VM_NAME
+	c.vm.hostname = VM_NAME
+	c.vm.provision "shell", path: "config.sh"
+	c.vm.synced_folder "dat/", "/home/vagrant/projects/"
+	c.vm.provider "virtualbox" do |v|
+		v.gui = false
+		v.name = VM_NAME
+		v.memory = 512
+		v.cpus = 1
+		v.customize ["modifyvm", :id, "--vram", "32"]
+		v.customize ["modifyvm", :id, "--groups", "/UNED"]
+		v.customize ["modifyvm", :id, "--audio", "none"]
+		# Para crear un despliegue enlazado a un snapshot
+		v.linked_clone = true if Gem::Version.new(Vagrant::VERSION) >= Gem::Version.new("1.8.0")
+		# Para indicar que es un SSD
+		v.customize ["storageattach",:id,"--storagectl","SATA Controller","--port","0","--nonrotational", "on"]
+	end
+	c.ssh.forward_x11 = false
+	c.ssh.compression = false
+	c.ssh.disable_deprecated_algorithms = true
+	c.vbguest.auto_update = false if Vagrant.has_plugin?("vagrant-vbguest")
+end
